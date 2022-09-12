@@ -1,32 +1,29 @@
 package com.example.practicespring;
 
-import com.example.practicespring.Services.CustomerService;
+import com.example.practicespring.Controller.CustomerController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import javax.swing.*;
 import java.awt.*;
 
-@SpringBootApplication
-public class PracticeSpringApplication implements CommandLineRunner {
+@Configuration
+@ComponentScan(basePackageClasses = {CustomerController.class})
+public class PracticeSpringApplication {
+
+    private static final Logger logger = LoggerFactory.getLogger(PracticeSpringApplication.class);
+
 
     public static void main(String[] args) {
+        logger.info("APPLICATION EXECUTION - INITIATED");
         new SpringApplicationBuilder(PracticeSpringApplication.class).headless(false).run(args);
+        logger.info("APPLICATION EXECUTION - COMPLETED");
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        JFrame frame = new JFrame("Spring Boot Swing App");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(300,300);
-        JPanel panel = new JPanel(new BorderLayout());
-        JTextField text = new JTextField("Swing frame test :)");
-        panel.add(text, BorderLayout.CENTER);
-        frame.setContentPane(panel);
-        frame.setVisible(true);
-    }
 
 }

@@ -13,7 +13,6 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
-
     public List<Customer> printPersonInfo() {
         List<Customer> list = new ArrayList<>();
         customerRepository.findAll().forEach(list::add);
