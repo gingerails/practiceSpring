@@ -1,5 +1,7 @@
 package com.example.practicespring.View;
 
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
@@ -36,6 +38,11 @@ public abstract class MainView {
         //"event" is definitely not used anywhere, in case you were trying to figure that out.
         newEntryButton.addActionListener(event -> newEntryButtonClicked());
         viewEntryButton.addActionListener(event -> viewEntryButtonClicked());
+        try {
+            UIManager.setLookAndFeel( new FlatDarkLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
     }
 
     {

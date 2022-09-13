@@ -1,6 +1,7 @@
 package com.example.practicespring.View;
 
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 
@@ -15,6 +16,11 @@ public abstract class DatabaseView {
 
     protected DatabaseView() {
         actionButton.addActionListener(e -> actionButtonClicked());
+        try {
+            UIManager.setLookAndFeel( new FlatDarkLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
     }
 
     protected abstract void actionButtonClicked();
@@ -33,6 +39,7 @@ public abstract class DatabaseView {
     public void viewMode() {
         journalEntry.setEditable(false);
         actionButton.setText("Close");
+
     }
 
     public void writeMode() {
